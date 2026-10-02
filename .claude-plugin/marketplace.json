@@ -1,0 +1,37 @@
+{
+  "name": "b2bsearch-skills",
+  "owner": {
+    "name": "B2B Enrich Search"
+  },
+  "metadata": {
+    "description": "Agent skills for B2B contact enrichment and people search with the b2bsearch Actors on Apify",
+    "version": "1.0.0"
+  },
+  "plugins": [
+    {
+      "name": "apify-b2b-contact-enrichment",
+      "source": "./skills/apify-b2b-contact-enrichment",
+      "skills": "./",
+      "description": "Enrich B2B contacts and build prospect lists from a database of 800M+ professional profiles and 115M companies, without scraping or cookies. Routes \"find the email for these LinkedIn profiles\", \"get phone numbers for this LinkedIn list\", \"who is behind this email address\", \"reverse email lookup\", \"turn personal emails into employer and job title\", \"find decision makers at these company domains\", \"list the employees of acme.com\", \"find people by job title, seniority and country\", \"enrich this CSV of emails or LinkedIn URLs\", \"find the LinkedIn profile for this GitHub, X or Facebook handle\" and \"find a work email from a name and a company domain\" to one Actor per conversion. Every Actor is pay per result with free misses, answers in seconds and returns one row per input with a status. Use when the user asks for contact enrichment, lead enrichment, email or phone lookup, people search, company employees or decision makers. Does not scrape live LinkedIn pages, posts, comments or job listings.",
+      "keywords": [
+        "contact-enrichment",
+        "lead-enrichment",
+        "linkedin-email",
+        "linkedin-phone",
+        "reverse-email-lookup",
+        "email-to-linkedin",
+        "email-to-company",
+        "decision-makers",
+        "company-employees",
+        "people-search",
+        "b2b-leads",
+        "work-email",
+        "phone-finder",
+        "prospecting",
+        "apify"
+      ],
+      "category": "data-extraction",
+      "version": "1.0.0"
+    }
+  ]
+}
