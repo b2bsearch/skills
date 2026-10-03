@@ -34,7 +34,7 @@ You need an [Apify account](https://apify.com) and either `apify login` or an `A
 
 ## How it is priced
 
-Every Actor is pay per result: you pay for a row that carries what you asked for, and a miss is free. Per 1,000 results on 2026-10-02: a search or roster row $1.50, a full profile $3.20, an email $8, a phone $20. The Pricing tab of each Actor is the authority. Found the same data cheaper elsewhere on Apify? Open an issue on the Actor and we will match the price.
+Every Actor is pay per result: you pay for a row that carries what you asked for, and a miss is free. Per 1,000 results on 2026-10-03: a search or roster row $1.50, a full profile $3.20, an email $8, a phone $12. The Pricing tab of each Actor is the authority. Found the same data cheaper elsewhere on Apify? Open an issue on the Actor and we will match the price.
 
 ## Use without a skill
 
