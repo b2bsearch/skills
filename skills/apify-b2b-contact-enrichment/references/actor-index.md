@@ -16,6 +16,7 @@ Fetch the input schema before building input:
 | `b2bsearch/profile-lookup` | `profileUrls` | full career profile: `fullName`, `headline`, `jobTitle`, `companyName`, `experience`, `education`, `skills`; with `contacts: true` also `email`, `emailType`, `phone`, `workEmails`, `personalEmails` | $3.20; $8 for a person with a live contact |
 | `b2bsearch/linkedin-email-finder` | `profileUrls`, `includePersonalEmails` | `email`, `emailType`, `workEmails`, `emailCount`, `fullName`, `jobTitle`, `companyName` | $8 per profile with an address |
 | `b2bsearch/linkedin-to-phone` | `profileUrls` | `primaryPhone`, `phones`, `phoneCount`, `fullName`, `jobTitle`, `company` | $12 per profile with a number |
+| `b2bsearch/linkedin-phone-lookup` | `profileUrls` | the first number only: `phone`, `morePhonesOnRecord`, `fullName`, `linkedinUrl` | $3 per profile with a number |
 
 ## From an email address
 
@@ -25,6 +26,8 @@ Fetch the input schema before building input:
 | `b2bsearch/email-to-linkedin` | `emails` (a name beside a work address raises the hit rate) | `linkedinUrl`, `fullName`, `jobTitle`, `company`, `matchedVia` | $3.20 |
 | `b2bsearch/email-to-company` | `emails` | `company`, `companyLinkedinUrl`, `jobTitle`, `positionStartDate`, `otherCurrentCompanies` | $3.80 |
 | `b2bsearch/email-to-phone` | `emails` | `primaryPhone`, `phones`, `linkedinUrl`, `fullName` | $12 |
+| `b2bsearch/email-to-twitter` | `emails` | `twitterUrl`, `twitterHandle`, `linkedinUrl`, `fullName`, `jobTitle`, `company` | $8 |
+| `b2bsearch/email-to-facebook` | `emails` | `facebookUrl`, `linkedinUrl`, `fullName`, `jobTitle`, `company` | $8 |
 
 ## From a social handle
 
@@ -32,6 +35,9 @@ Fetch the input schema before building input:
 |-------|-------|---------|-------|
 | `b2bsearch/social-handle-lookup` | `network` (`github`, `twitter`, `facebook`), `handles` | the person's full profile | $3.20; $8 with contacts |
 | `b2bsearch/github-to-linkedin` | `usernames` | `linkedinUrl`, `fullName`, `jobTitle`, `company` | $3.20 |
+| `b2bsearch/github-to-email` | `usernames` | `primaryEmail`, `primaryEmailType`, `workEmails`, `personalEmails`, `linkedinUrl` | $8 |
+| `b2bsearch/twitter-to-linkedin` | `handles` | `linkedinUrl`, `fullName`, `jobTitle`, `company`, `location` | $3.20 |
+| `b2bsearch/facebook-to-linkedin` | `profiles` | `linkedinUrl`, `fullName`, `jobTitle`, `company`, `location` | $3.20 |
 | `b2bsearch/twitter-to-email` | `handles` | `primaryEmail`, `workEmails`, `personalEmails`, `linkedinUrl` | $8 |
 | `b2bsearch/twitter-to-phone` | `handles` | `primaryPhone`, `phones`, `linkedinUrl` | $12 |
 | `b2bsearch/facebook-to-email` | `profiles` | `primaryEmail`, `workEmails`, `personalEmails`, `linkedinUrl` | $8 |
@@ -43,6 +49,7 @@ Fetch the input schema before building input:
 |-------|-------|---------|-------|
 | `b2bsearch/name-to-profile` | `names` ("Jane Doe, example.com"), `companyDomain` | LinkedIn profile URL and full profile | $3.20; $8 with contacts |
 | `b2bsearch/work-email-finder` | `lookups` (`full_name` + `domain`), `verifyTopCandidate` | `candidates` (ranked work email candidates), `email_validity` | $8 per name with candidates |
+| `b2bsearch/name-to-phone` | `names` ("Jane Doe, example.com"), `companyDomain` | `primaryPhone`, `phones`, `phoneCount`, `linkedinUrl`, `fullName`, `jobTitle` | $12 per name with a number |
 
 ## From a company domain
 
@@ -50,6 +57,8 @@ Fetch the input schema before building input:
 |-------|-------|---------|-------|
 | `b2bsearch/domain-to-decision-makers` | `domains`, `roles`, `maxPerCompany`, `titleKeywords` | founders, C-level, VPs, directors: `fullName`, `jobTitle`, `seniority`, `linkedinUrl`, `hasWorkEmail` | $3.20 |
 | `b2bsearch/company-employees` | `companies`, `roles`, `profileDetail` (`roster` / `profile` / `contacts`), `maxRows` | current staff: `fullName`, `title`, `seniority`, `profileUrl`, `hasWorkEmail` | $1.50 roster; $3.20 profile; $8 with a live contact |
+| `b2bsearch/domain-to-company` | `domains` | the company: `companyName`, `linkedinUrl`, `employeeCount`, `employeeRange`, `industry`, `country`, `hqLocality`, `founded`, `lastRoundType`, `lastRoundAmountUsd` | $5.50 |
+| `b2bsearch/former-employees-finder` | `companyDomains`, `leftAfterYear`, `titleKeywords`, `seniority`, `previewOnly`, `maxResults` | people who left: `fullName`, `linkedinUrl`, `currentTitle`, `currentCompany`, `currentCompanyDomain`, `formerCompany`, `hasWorkEmail` | $0.10 per page of up to 50 people; count preview free |
 
 ## Search
 

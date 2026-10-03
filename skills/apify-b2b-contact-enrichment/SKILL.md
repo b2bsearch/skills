@@ -66,6 +66,7 @@ If the request is a description of an audience ("VPs of Sales at US SaaS compani
 |----------|------------|----------|------|-------------|
 | LinkedIn profile URLs | email | `b2bsearch/linkedin-email-finder` | community | `profileUrls` |
 | LinkedIn profile URLs | phone (US-centric) | `b2bsearch/linkedin-to-phone` | community | `profileUrls` |
+| LinkedIn profile URLs | one phone at the lowest price | `b2bsearch/linkedin-phone-lookup` | community | `profileUrls` |
 | LinkedIn profile URLs | full career profile | `b2bsearch/profile-lookup` | community | `profileUrls` |
 | Emails | the person: name, title, employer, profile | `b2bsearch/reverse-email-lookup` | community | `emails` |
 | Emails | LinkedIn profile URL only | `b2bsearch/email-to-linkedin` | community | `emails` |
@@ -73,11 +74,13 @@ If the request is a description of an audience ("VPs of Sales at US SaaS compani
 | Emails | phone (US-centric) | `b2bsearch/email-to-phone` | community | `emails` |
 | Company domains | decision makers | `b2bsearch/domain-to-decision-makers` | community | `domains` |
 | Company domains | current employees | `b2bsearch/company-employees` | community | `companies` |
+| Company domains | the company record | `b2bsearch/domain-to-company` | community | `domains` |
+| Company domains | former employees and where they are now | `b2bsearch/former-employees-finder` | community | `companyDomains` |
 | A description of the audience | people matching filters | `b2bsearch/people-database-search` | community | `countries` + filters |
 | Names + company domain | LinkedIn profile | `b2bsearch/name-to-profile` | community | `names` |
 | A CSV of mixed keys | enriched rows | `b2bsearch/bulk-people-enrichment` | community | `csv` |
 
-Social handles, work-email guessing and company search are in [references/actor-index.md](references/actor-index.md), with the price and the main output fields of every Actor.
+Social handles, phone by name, work-email guessing and company search are in [references/actor-index.md](references/actor-index.md), with the price and the main output fields of every Actor.
 
 Rules of thumb:
 
@@ -123,7 +126,7 @@ then the same input with `"previewOnly": false`, `"maxResults": 100` and, if con
 - `mustHave` (for example `["email"]` or `["phone"]`) delivers and charges only people who have that field; the rest are skipped free.
 - `previewOnly: true` on the two search Actors returns the number of matches and charges nothing.
 
-**Cost, stated before the run.** Every Actor bills per result; a miss, an invalid entry and a person without the requested field are free rows. Read the current price from the Actor's Pricing tab (the schema fetch above returns the pricing block too). At the time of writing (2026-10-03) per 1,000 results: a search or roster row $1.50, a full profile $3.20, an email $8, a phone $12, a profile with a live contact $8. The ceiling of a run is `entries × price`; say it in one sentence and confirm with the user above $5. The size of the list holds the ceiling on lookups; `maxResults`, `maxRows` and `maxPerCompany` hold it on searches and rosters.
+**Cost, stated before the run.** Every Actor bills per result; a miss, an invalid entry and a person without the requested field are free rows. Read the current price from the Actor's Pricing tab (the schema fetch above returns the pricing block too). At the time of writing (2026-10-03) per 1,000 results: a search or roster row $1.50, a full profile $3.20, an email $8, every phone on record $12 or the first one only $3, a profile with a live contact $8. The ceiling of a run is `entries × price`; say it in one sentence and confirm with the user above $5. The size of the list holds the ceiling on lookups; `maxResults`, `maxRows` and `maxPerCompany` hold it on searches and rosters.
 
 Set expectations on hit rates before the run; they are measured numbers from the Actor READMEs, not promises: a phone is on record for about 1 in 4 US decision-maker profiles and for few people outside the US; a cold list of work emails resolves to a LinkedIn profile for about a quarter of addresses, and for about two thirds when the name is given beside the address.
 
