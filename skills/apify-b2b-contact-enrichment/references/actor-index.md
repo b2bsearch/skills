@@ -65,7 +65,7 @@ Fetch the input schema before building input:
 | Actor | Input | Returns | Price |
 |-------|-------|---------|-------|
 | `b2bsearch/people-database-search` | `countries` (required), `titleKeywords`, `seniority`, `companyDomains`, `employerIndustries`, `employeeCountMin` / `Max`, `pastEmployerDomains`, `localityKeywords`, `mustHave`, `previewOnly`, `maxResults`, `profileDetail` | people: `fullName`, `jobTitle`, `companyName`, `companyDomain`, `profileUrl`, `hasWorkEmail`, `hasPersonalEmail` | $1.50 row; $3.20 profile; $8 with a live contact; count preview free |
-| `b2bsearch/company-database-search` | `countries`, `industries`, `employeesMin` / `Max`, `hasFunding`, `fundingRounds`, `fundedAfter`, `previewOnly` | companies: `name`, `domain`, `industry`, `employeeCount`, `hq`, `funding` | $1.50; count preview free |
+| `b2bsearch/company-database-search` | `countries`, `industries`, `hqLocations`, `employeesMin` / `Max`, `foundedFrom` / `To`, `hasFunding`, `fundingRounds`, `fundedAfter`, `sort`, `previewOnly`, `maxResults` | companies, largest first: `name`, `domain`, `linkedinUrl`, `industry`, `employeeCount`, `funding`, `description` | $1.50; count preview free |
 
 ## Bulk
 
