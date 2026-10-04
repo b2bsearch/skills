@@ -58,7 +58,7 @@ Task Progress:
 2. **What they want back**: email, phone, employer and title, LinkedIn URL, the full profile, or a list of people.
 3. **How many**: the size of the list, or a cap for a search.
 
-If the request is a description of an audience ("VPs of Sales at US SaaS companies"), it is a search. Size it first with `b2bsearch/people-database-search` in `"mode": "count"` (or `"market"` for countries, employers and seniority) — no per-row charge. If the user wants a list to email, use `b2bsearch/b2b-leads-finder`: same filters, one flat row per person with a work email at the current company or a personal one, $1 per 1,000 leads.
+If the request is a description of an audience ("VPs of Sales at US SaaS companies"), it is a search. Size it first with `b2bsearch/people-database-search` in `"mode": "count"` (or `"market"` for countries, employers and seniority) — no per-row charge. If the user wants a list to email, use `b2bsearch/b2b-leads-finder`: same filters, one flat row per person with a work email at the current company or a personal one, $1.50–$3 per 1,000 leads (by Apify plan).
 
 ### Step 2: Route
 
@@ -89,7 +89,7 @@ Rules of thumb:
 - Several fields wanted for the same people → `profile-lookup` or `reverse-email-lookup` with `"contacts": true` instead of chaining three narrow Actors.
 - More than 1,000 entries → `bulk-people-enrichment` (CSV, 50,000 rows per run, resumes after an interruption).
 - People found by `people-database-search` or `company-employees` can carry their contacts in the same run (`"profileDetail": "contacts"`); no second Actor is needed.
-- Only an email per person from a search → `b2b-leads-finder` ($1 per 1,000) rather than the contacts tier of `people-database-search` ($8 per 1,000, full profile included).
+- Only an email per person from a search → `b2b-leads-finder` ($1.50–$3 per 1,000 by Apify plan) rather than the contacts tier of `people-database-search` ($8 per 1,000, full profile included).
 
 Fetch the live input schema before building input. Fields change; the schema wins over this file:
 
@@ -122,7 +122,7 @@ Fetch the live input schema before building input. Fields change; the schema win
 { "countries": ["de"], "titleKeywords": ["cto", "vp engineering"], "employerIndustries": ["Financial Services"], "employeeCountMin": 50, "employeeCountMax": 500, "mode": "count" }
 ```
 
-then the same input with `"mode": "people"`, `"maxResults": 100` and, if contacts are wanted, `"profileDetail": "contacts"`. For an outreach list with one email per person, send the same filters to `b2bsearch/b2b-leads-finder` (`jobTitles`, `industries`, `companySizeMin` / `Max`) at $1 per 1,000 leads.
+then the same input with `"mode": "people"`, `"maxResults": 100` and, if contacts are wanted, `"profileDetail": "contacts"`. For an outreach list with one email per person, send the same filters to `b2bsearch/b2b-leads-finder` (`jobTitles`, `industries`, `companySizeMin` / `Max`) at $1.50–$3 per 1,000 leads (by Apify plan).
 
 - `compact: true` (on the Actors that return a full profile) gives about 2 KB per person instead of 10+ KB: identity, current role, the 5 latest positions, education, skills and any contacts. Use it whenever rows go into a model's context. Same price.
 - `mustHave` (for example `["email"]` or `["phone"]`) delivers and charges only people who have that field; the rest are skipped free.
