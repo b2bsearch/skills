@@ -2,7 +2,7 @@
 
 Every Actor this skill routes to. All are pay-per-event, need no cookies or login, and return one row per input entry with `_status`, `_input` and, on a row that is not a result, `_error`.
 
-Prices are per 1,000 results, read from the Store on 2026-10-03. The Pricing tab of each Actor is the authority. Misses are free everywhere.
+Prices are per 1,000 results, read from the Store on 2026-10-04. The Pricing tab of each Actor is the authority. Misses are free everywhere.
 
 Fetch the input schema before building input:
 
@@ -64,7 +64,8 @@ Fetch the input schema before building input:
 
 | Actor | Input | Returns | Price |
 |-------|-------|---------|-------|
-| `b2bsearch/people-database-search` | `countries` (required), `titleKeywords`, `seniority`, `companyDomains`, `employerIndustries`, `employeeCountMin` / `Max`, `pastEmployerDomains`, `localityKeywords`, `mustHave`, `previewOnly`, `maxResults`, `profileDetail` | people: `fullName`, `jobTitle`, `companyName`, `companyDomain`, `profileUrl`, `hasWorkEmail`, `hasPersonalEmail` | $1.50 row; $3.20 profile; $8 with a live contact; count preview free |
+| `b2bsearch/people-database-search` | `mode` (`people` / `count` / `market`), `countries`, `countryGroups`, `titleKeywords`, `titleMatch`, `seniority`, `companyDomains`, `employerIndustries`, `employeeCountMin` / `Max`, `pastEmployerDomains`, `localityKeywords`, `segments`, `maxPerCompany`, `excludeDatasets`, `mustHave`, `maxResults`, `profileDetail` | people: `fullName`, `jobTitle`, `companyName`, `companyDomain`, `profileUrl`, `hasWorkEmail`, `hasPersonalEmail`, `personId`; market rows: `dimension`, `value`, `count`, `share` | $0.95 row; $3.20 profile; $8 with a live contact; count and market modes have no per-row charge |
+| `b2bsearch/b2b-leads-finder` | `jobTitles`, `seniority`, `countries`, `cities`, `industries`, `companySizeMin` / `Max`, `companyDomains`, `keywords`, `emailType` (`any` / `work` / `personal`), `maxPerCompany`, `excludeDatasets`, `maxResults` | leads: `fullName`, `firstName`, `lastName`, `jobTitle`, `email`, `emailType`, `workEmail`, `personalEmail`, `companyName`, `companyDomain`, `companySize`, `linkedinUrl`, `phoneOnRecord` | $1 per lead with an email; people without one are free |
 | `b2bsearch/company-database-search` | `countries`, `industries`, `hqLocations`, `employeesMin` / `Max`, `foundedFrom` / `To`, `hasFunding`, `fundingRounds`, `fundedAfter`, `sort`, `previewOnly`, `maxResults` | companies, largest first: `name`, `domain`, `linkedinUrl`, `industry`, `employeeCount`, `funding`, `description` | $1.50; count preview free |
 
 ## Bulk

@@ -31,10 +31,11 @@ You need an [Apify account](https://apify.com) and either `apify login` or an `A
 - "I have 5,000 Gmail signups. Which companies do these people work at and what are their job titles?"
 - "Find the founders, C-level and VPs at these 40 company domains."
 - "Find CTOs at fintech companies with 50-500 employees in Germany. How many are there? Give me the first 100 with emails."
+- "500 heads of marketing at UK software companies with 50-200 people, with emails, for my outreach tool. Skip everyone I got last week."
 
 ## How it is priced
 
-Every Actor is pay per result: you pay for a row that carries what you asked for, and a miss is free. Per 1,000 results on 2026-10-03: a search or roster row $1.50, a full profile $3.20, an email $8, a phone $12. The Pricing tab of each Actor is the authority. Found the same data cheaper elsewhere on Apify? Open an issue on the Actor and we will match the price.
+Every Actor is pay per result: you pay for a row that carries what you asked for, and a miss is free. Per 1,000 results on 2026-10-04: a people-search row $0.95, a lead with an email $1, a company or roster row $1.50, a full profile $3.20, an email $8, a phone $12. The Pricing tab of each Actor is the authority. Found the same data cheaper elsewhere on Apify? Open an issue on the Actor and we will match the price.
 
 ## Use without a skill
 

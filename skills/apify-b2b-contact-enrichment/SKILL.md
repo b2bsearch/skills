@@ -5,7 +5,7 @@ author: B2B Enrich Search (b2bsearch) — routes to Actors built by the author; 
 author_url: https://github.com/b2bsearch
 metadata:
   category: data-extraction
-  keywords: "contact-enrichment, lead-enrichment, linkedin-email, linkedin-phone, reverse-email-lookup, email-to-linkedin, email-to-company, decision-makers, company-employees, people-search, b2b-leads, work-email, phone-finder, prospecting, apify"
+  keywords: "contact-enrichment, lead-enrichment, linkedin-email, linkedin-phone, reverse-email-lookup, email-to-linkedin, email-to-company, decision-makers, company-employees, people-search, b2b-leads, leads-finder, apollo-alternative, work-email, phone-finder, prospecting, apify"
 ---
 
 # B2B contact enrichment and people search
@@ -58,7 +58,7 @@ Task Progress:
 2. **What they want back**: email, phone, employer and title, LinkedIn URL, the full profile, or a list of people.
 3. **How many**: the size of the list, or a cap for a search.
 
-If the request is a description of an audience ("VPs of Sales at US SaaS companies"), it is a search: go to `b2bsearch/people-database-search` and run the free count first.
+If the request is a description of an audience ("VPs of Sales at US SaaS companies"), it is a search. Size it first with `b2bsearch/people-database-search` in `"mode": "count"` (or `"market"` for countries, employers and seniority) — no per-row charge. If the user wants a list to email, use `b2bsearch/b2b-leads-finder`: same filters, one flat row per person with a work email at the current company or a personal one, $1 per 1,000 leads.
 
 ### Step 2: Route
 
@@ -76,7 +76,8 @@ If the request is a description of an audience ("VPs of Sales at US SaaS compani
 | Company domains | current employees | `b2bsearch/company-employees` | community | `companies` |
 | Company domains | the company record | `b2bsearch/domain-to-company` | community | `domains` |
 | Company domains | former employees and where they are now | `b2bsearch/former-employees-finder` | community | `companyDomains` |
-| A description of the audience | people matching filters | `b2bsearch/people-database-search` | community | `countries` + filters |
+| A description of the audience | people matching filters, counts, market breakdowns | `b2bsearch/people-database-search` | community | `titleKeywords` + filters, `mode` |
+| A description of the audience | leads with an email, for outreach | `b2bsearch/b2b-leads-finder` | community | `jobTitles` + filters, `emailType` |
 | Names + company domain | LinkedIn profile | `b2bsearch/name-to-profile` | community | `names` |
 | A CSV of mixed keys | enriched rows | `b2bsearch/bulk-people-enrichment` | community | `csv` |
 
@@ -88,6 +89,7 @@ Rules of thumb:
 - Several fields wanted for the same people → `profile-lookup` or `reverse-email-lookup` with `"contacts": true` instead of chaining three narrow Actors.
 - More than 1,000 entries → `bulk-people-enrichment` (CSV, 50,000 rows per run, resumes after an interruption).
 - People found by `people-database-search` or `company-employees` can carry their contacts in the same run (`"profileDetail": "contacts"`); no second Actor is needed.
+- Only an email per person from a search → `b2b-leads-finder` ($1 per 1,000) rather than the contacts tier of `people-database-search` ($8 per 1,000, full profile included).
 
 Fetch the live input schema before building input. Fields change; the schema wins over this file:
 
@@ -117,16 +119,16 @@ Fetch the live input schema before building input. Fields change; the schema win
 **People search, count first:**
 
 ```json
-{ "countries": ["de"], "titleKeywords": ["cto", "vp engineering"], "employerIndustries": ["Financial Services"], "employeeCountMin": 50, "employeeCountMax": 500, "previewOnly": true }
+{ "countries": ["de"], "titleKeywords": ["cto", "vp engineering"], "employerIndustries": ["Financial Services"], "employeeCountMin": 50, "employeeCountMax": 500, "mode": "count" }
 ```
 
-then the same input with `"previewOnly": false`, `"maxResults": 100` and, if contacts are wanted, `"profileDetail": "contacts"`.
+then the same input with `"mode": "people"`, `"maxResults": 100` and, if contacts are wanted, `"profileDetail": "contacts"`. For an outreach list with one email per person, send the same filters to `b2bsearch/b2b-leads-finder` (`jobTitles`, `industries`, `companySizeMin` / `Max`) at $1 per 1,000 leads.
 
 - `compact: true` (on the Actors that return a full profile) gives about 2 KB per person instead of 10+ KB: identity, current role, the 5 latest positions, education, skills and any contacts. Use it whenever rows go into a model's context. Same price.
 - `mustHave` (for example `["email"]` or `["phone"]`) delivers and charges only people who have that field; the rest are skipped free.
-- `previewOnly: true` on the two search Actors returns the number of matches and charges nothing.
+- `"mode": "count"` (people) and `"previewOnly": true` (companies) return the number of matches with no per-row charge; `"mode": "market"` on people search adds the breakdown by country, seniority, employer size, industry, title and employer.
 
-**Cost, stated before the run.** Every Actor bills per result; a miss, an invalid entry and a person without the requested field are free rows. Read the current price from the Actor's Pricing tab (the schema fetch above returns the pricing block too). At the time of writing (2026-10-03) per 1,000 results: a search or roster row $1.50, a full profile $3.20, an email $8, every phone on record $12 or the first one only $3, a profile with a live contact $8. The ceiling of a run is `entries × price`; say it in one sentence and confirm with the user above $5. The size of the list holds the ceiling on lookups; `maxResults`, `maxRows` and `maxPerCompany` hold it on searches and rosters.
+**Cost, stated before the run.** Every Actor bills per result; a miss, an invalid entry and a person without the requested field are free rows. Read the current price from the Actor's Pricing tab (the schema fetch above returns the pricing block too). At the time of writing (2026-10-04) per 1,000 results: a people-search row $0.95, a lead with an email $1, a company or roster row $1.50, a full profile $3.20, an email $8, every phone on record $12 or the first one only $3, a profile with a live contact $8. The ceiling of a run is `entries × price`; say it in one sentence and confirm with the user above $5. The size of the list holds the ceiling on lookups; `maxResults`, `maxRows` and `maxPerCompany` hold it on searches and rosters.
 
 Set expectations on hit rates before the run; they are measured numbers from the Actor READMEs, not promises: a phone is on record for about 1 in 4 US decision-maker profiles and for few people outside the US; a cold list of work emails resolves to a LinkedIn profile for about a quarter of addresses, and for about two thirds when the name is given beside the address.
 
