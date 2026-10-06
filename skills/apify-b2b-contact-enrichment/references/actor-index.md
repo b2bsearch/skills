@@ -16,7 +16,6 @@ Fetch the input schema before building input:
 | `b2bsearch/profile-lookup` | `profileUrls` | full career profile: `fullName`, `headline`, `jobTitle`, `companyName`, `experience`, `education`, `skills`; with `contacts: true` also `email`, `emailType`, `phone`, `workEmails`, `personalEmails` | $3.20; $8 for a person with a live contact |
 | `b2bsearch/linkedin-email-finder` | `profileUrls`, `includePersonalEmails` | `email`, `emailType`, `workEmails`, `emailCount`, `fullName`, `jobTitle`, `companyName` | $8 per profile with an address |
 | `b2bsearch/linkedin-to-phone` | `profileUrls` | `primaryPhone`, `phones`, `phoneCount`, `fullName`, `jobTitle`, `company` | $12 per profile with a number |
-| `b2bsearch/linkedin-phone-lookup` | `profileUrls` | the first number only: `phone`, `morePhonesOnRecord`, `fullName`, `linkedinUrl` | $3 per profile with a number |
 
 ## From an email address
 

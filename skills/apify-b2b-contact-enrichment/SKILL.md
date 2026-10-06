@@ -66,7 +66,6 @@ If the request is a description of an audience ("VPs of Sales at US SaaS compani
 |----------|------------|----------|------|-------------|
 | LinkedIn profile URLs | email | `b2bsearch/linkedin-email-finder` | community | `profileUrls` |
 | LinkedIn profile URLs | phone (US-centric) | `b2bsearch/linkedin-to-phone` | community | `profileUrls` |
-| LinkedIn profile URLs | one phone at the lowest price | `b2bsearch/linkedin-phone-lookup` | community | `profileUrls` |
 | LinkedIn profile URLs | full career profile | `b2bsearch/profile-lookup` | community | `profileUrls` |
 | Emails | the person: name, title, employer, profile | `b2bsearch/reverse-email-lookup` | community | `emails` |
 | Emails | LinkedIn profile URL only | `b2bsearch/email-to-linkedin` | community | `emails` |
