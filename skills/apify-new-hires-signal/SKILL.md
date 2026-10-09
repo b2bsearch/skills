@@ -81,7 +81,7 @@ Do not rerun a finished run to "refresh"; page the same dataset with `--limit` /
 
 ### Step 4: Deliver
 
-Every row carries `_status` and `_input.domain`. Paid rows are `_status: found`; everything else is free and says why in `_note` or `_error` (`no_results`, `left_already`, `skipped_per_company`, `invalid`).
+Every row carries `_status` and `_input.domain`. Paid rows are `_status: found`; everything else is free and says why in `_note` or `_error` (`no_results`, `left_already`, `outside_window`, `skipped_per_company`, `invalid`).
 
 Columns to give back, in this order: `companyName`, `fullName`, `jobTitle`, `seniority`, `startedAt`, `previousCompany`, `previousTitle`, `previousEndedAt`, `location`, `linkedinUrl`, `hasWorkEmail`. `_detail` is `profile` when the person's record was read (previous role available) and `row` when it could not be.
 
@@ -96,7 +96,7 @@ Report hires found per domain, how many have a previous employer, what was free 
 ## Troubleshooting
 
 - **A domain returns `no_results`** → nobody on record started inside the window. Widen `sinceMonths` or drop the seniority filter. Not charged.
-- **`left_already` rows** → the person's record now lists a different current employer; delivered free so the user sees it, not counted as a hire.
+- **`left_already` and `outside_window` rows** → the person's record now lists a different current employer, or their position at this company started before the window (a newer job elsewhere matched the date); delivered free so the user sees them, not counted as hires. Measured 2026-10-10 on `stripe.com`: 20 hires and 5 such free rows.
 - **The run stops early** → `maxResults` or the run's maximum charge was hit; rows already delivered are the only ones charged. Raise the cap or split the list.
 - **A hire from last month is missing** → the profile has not shown the new position yet. Run again later.
 - **Too many `other` seniority rows** → set `seniority` or `jobTitles`; the default returns every new hire.
