@@ -5,7 +5,7 @@
   },
   "metadata": {
     "description": "Agent skills for B2B contact enrichment and people search with the b2bsearch Actors on Apify",
-    "version": "1.0.0"
+    "version": "1.1.0"
   },
   "plugins": [
     {
@@ -28,6 +28,86 @@
         "work-email",
         "phone-finder",
         "prospecting",
+        "apify"
+      ],
+      "category": "data-extraction",
+      "version": "1.0.0"
+    },
+    {
+      "name": "apify-new-hires-signal",
+      "source": "./skills/apify-new-hires-signal",
+      "skills": "./",
+      "description": "Find who recently joined a company and where they came from, by company website domain, from a database of professional profiles with position dates — no LinkedIn login, no scraping. Handles \"who joined acme.com in the last 6 months\", \"new hires at these 50 accounts\", \"new VP or director at my target accounts\", \"which of our customers' people moved to a prospect\", \"job change signal for my account list\", \"track recent joiners weekly\". Returns one row per new hire with the new title, start month, seniority, LinkedIn URL and the previous employer and title. Pay per new hire delivered; companies with nobody new are free. Use when the user wants hiring or job-change signals for named companies. Not for \"who left a company\" (that is apify-b2b-contact-enrichment, former-employees-finder) and not for job postings.",
+      "keywords": [
+        "new-hires",
+        "recent-joiners",
+        "job-change-signal",
+        "hiring-signal",
+        "account-monitoring",
+        "sales-trigger",
+        "previous-employer",
+        "champion-tracking",
+        "b2b",
+        "apify"
+      ],
+      "category": "data-extraction",
+      "version": "1.0.0"
+    },
+    {
+      "name": "apify-company-email-format",
+      "source": "./skills/apify-company-email-format",
+      "skills": "./",
+      "description": "Find how a company writes its work email addresses (first.last@, flast@, first@) from addresses on record for its current employees, by company website domain — the step before guessing a work email from a name. Handles \"what is the email format at acme.com\", \"email pattern for these 300 domains\", \"will first.last work at this company\", \"check the email convention before I build addresses\", \"which of my target domains have a reliable pattern\". Returns one row per domain with the pattern, how many employees confirm it, agreement, coverage, other patterns in use and masked examples; no email address leaves the Actor. Pay only for a confirmed pattern; weak, unknown and shared-hosting domains are free. Use when the user wants an email pattern, format or convention for named companies. Not for finding a specific person's address (route that to apify-b2b-contact-enrichment).",
+      "keywords": [
+        "email-pattern",
+        "email-format",
+        "email-convention",
+        "work-email",
+        "email-guessing",
+        "domain-lookup",
+        "email-finder",
+        "outbound",
+        "b2b",
+        "apify"
+      ],
+      "category": "data-extraction",
+      "version": "1.0.0"
+    },
+    {
+      "name": "apify-lookalike-accounts",
+      "source": "./skills/apify-lookalike-accounts",
+      "skills": "./",
+      "description": "Expand a few known companies into a list of similar companies and, when asked, the decision makers at them — from a database of 115M company records and 800M+ professional profiles, no scraping. Handles \"find companies like acme.com\", \"companies similar to my 10 best customers\", \"lookalike accounts for this seed list\", \"build an ICP list from these examples\", \"who are the competitors of linear.app by size and country\", \"expand these closed-won deals into their peers and get the VPs\". Returns one row per lookalike with name, domain, LinkedIn page, industry, headcount, HQ, founding year and funding, and the explicit criteria it matched on; optionally chains decision makers per domain. Pay per company delivered; the seed, duplicates and unresolved seeds are free. Use when the user starts from example companies rather than from filters. Not for filter-based company search (that is apify-b2b-contact-enrichment, company-database-search).",
+      "keywords": [
+        "lookalike-companies",
+        "similar-companies",
+        "icp-building",
+        "account-expansion",
+        "competitor-finder",
+        "target-accounts",
+        "decision-makers",
+        "abm",
+        "b2b",
+        "apify"
+      ],
+      "category": "data-extraction",
+      "version": "1.0.0"
+    },
+    {
+      "name": "apify-icp-people-list",
+      "source": "./skills/apify-icp-people-list",
+      "skills": "./",
+      "description": "Build a list of people that matches an ideal customer profile — job title, seniority, country, employer industry and size, former employer — from a database of 800M+ professional profiles, with a free count before the first paid row and an email on every row when the list is for outreach. Handles \"500 VP Sales at UK fintechs\", \"heads of marketing at US SaaS companies with 50–200 people\", \"CTOs in Germany who used to work at Google\", \"how many people match this profile\", \"build a lead list with emails for my sequence\", \"Sales Navigator alternative\", \"Apollo alternative\". Sizes the segment first (count, market breakdown), then delivers rows, then leads with an email; states the cost before each paid step. Use when the user describes an audience rather than naming companies or people. Not for enriching a list the user already has (apify-b2b-contact-enrichment) and not for live LinkedIn pages.",
+      "keywords": [
+        "icp",
+        "people-search",
+        "lead-list",
+        "b2b-leads",
+        "sales-navigator-alternative",
+        "apollo-alternative",
+        "prospecting",
+        "job-title-search",
+        "outbound",
         "apify"
       ],
       "category": "data-extraction",

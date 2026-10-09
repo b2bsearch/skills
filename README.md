@@ -15,6 +15,7 @@ In Claude Code:
 ```
 /plugin marketplace add b2bsearch/skills
 /plugin install apify-b2b-contact-enrichment@b2bsearch-skills
+/plugin install apify-new-hires-signal@b2bsearch-skills
 ```
 
 You need an [Apify account](https://apify.com) and either `apify login` or an `APIFY_TOKEN` in the environment. New Apify accounts come with free monthly credit.
@@ -24,6 +25,10 @@ You need an [Apify account](https://apify.com) and either `apify login` or an `A
 | Skill | What it does |
 |-------|--------------|
 | [apify-b2b-contact-enrichment](skills/apify-b2b-contact-enrichment/SKILL.md) | Routes an enrichment or prospecting request to one Actor per conversion: LinkedIn URL → email, phone or full profile; email → person, employer or LinkedIn URL; company domain → decision makers or employees; filters → people; CSV → enriched rows. States the cost before the run and reports found / not found with reasons. |
+| [apify-icp-people-list](skills/apify-icp-people-list/SKILL.md) | Turns a description of an audience (title, seniority, country, industry, employer size, former employer) into a sized segment and a list: free count and market breakdown first, people rows second, leads with an email last. |
+| [apify-new-hires-signal](skills/apify-new-hires-signal/SKILL.md) | Who recently joined named companies and where they came from: new title, start month, previous employer and title, LinkedIn URL. A job-change signal for an account list, by company domain. |
+| [apify-company-email-format](skills/apify-company-email-format/SKILL.md) | The work email convention of a company (first.last@, flast@ …) derived from addresses on record for its staff, with confirmations and agreement; the step before guessing an address from a name. |
+| [apify-lookalike-accounts](skills/apify-lookalike-accounts/SKILL.md) | From a few example companies to similar companies (industry, country, size, with explicit `matchedOn`) and, when asked, the decision makers at each. |
 
 ## What you can ask
 
@@ -32,6 +37,9 @@ You need an [Apify account](https://apify.com) and either `apify login` or an `A
 - "Find the founders, C-level and VPs at these 40 company domains."
 - "Find CTOs at fintech companies with 50-500 employees in Germany. How many are there? Give me the first 100 with emails."
 - "500 heads of marketing at UK software companies with 50-200 people, with emails, for my outreach tool. Skip everyone I got last week."
+- "Who joined these 40 target accounts since April, and which of them came from one of our customers?"
+- "What email format does n26.com use? Check all 300 domains on my list."
+- "Find 50 companies like each of our 10 best customers, then the founders and VPs of Sales at them."
 
 ## How it is priced
 

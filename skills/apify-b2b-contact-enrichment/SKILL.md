@@ -75,6 +75,9 @@ If the request is a description of an audience ("VPs of Sales at US SaaS compani
 | Company domains | current employees | `b2bsearch/company-employees` | community | `companies` |
 | Company domains | the company record | `b2bsearch/domain-to-company` | community | `domains` |
 | Company domains | former employees and where they are now | `b2bsearch/former-employees-finder` | community | `companyDomains` |
+| Company domains | people who joined recently, with their previous employer | `b2bsearch/new-hires-finder` | community | `companyDomains` |
+| Company domains | the work email format (first.last@ …), no addresses | `b2bsearch/company-email-format-finder` | community | `domains` |
+| Company domains | similar companies (industry, country, size) | `b2bsearch/lookalike-company-finder` | community | `seedDomains` |
 | A description of the audience | people matching filters, counts, market breakdowns | `b2bsearch/people-database-search` | community | `titleKeywords` + filters, `mode` |
 | A description of the audience | leads with an email, for outreach | `b2bsearch/b2b-leads-finder` | community | `jobTitles` + filters, `emailType` |
 | Names + company domain | LinkedIn profile | `b2bsearch/name-to-profile` | community | `names` |

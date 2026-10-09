@@ -58,6 +58,9 @@ Fetch the input schema before building input:
 | `b2bsearch/company-employees` | `companies`, `roles`, `profileDetail` (`roster` / `profile` / `contacts`), `maxRows` | current staff: `fullName`, `title`, `seniority`, `profileUrl`, `hasWorkEmail` | $1.50 roster; $3.20 profile; $8 with a live contact |
 | `b2bsearch/domain-to-company` | `domains` | the company: `companyName`, `linkedinUrl`, `employeeCount`, `employeeRange`, `industry`, `country`, `hqLocality`, `founded`, `lastRoundType`, `lastRoundAmountUsd` | $5.50 |
 | `b2bsearch/former-employees-finder` | `companyDomains`, `leftAfterYear`, `titleKeywords`, `seniority`, `previewOnly`, `maxResults` | people who left: `fullName`, `linkedinUrl`, `currentTitle`, `currentCompany`, `currentCompanyDomain`, `formerCompany`, `hasWorkEmail` | $0.10 per page of up to 50 people; count preview free |
+| `b2bsearch/new-hires-finder` | `companyDomains`, `sinceMonths` or `since`, `seniority`, `jobTitles`, `countries`, `maxPerCompany`, `maxResults` | people who joined recently: `fullName`, `jobTitle`, `seniority`, `startedAt`, `previousCompany`, `previousTitle`, `previousEndedAt`, `linkedinUrl`, `hasWorkEmail` | $3.20 per new hire; companies with nobody new free |
+| `b2bsearch/company-email-format-finder` | `domains`, `sampleLimit` | the work email convention: `pattern`, `patternExample`, `confirmations`, `agreement`, `coverage`, `otherPatterns`, `maskedSamples` (no addresses) | $20 per domain with a confirmed pattern; weak and unknown free |
+| `b2bsearch/lookalike-company-finder` | `seedDomains`, `maxPerSeed`, `sameCountry`, `sameSize`, `countries` | similar companies: `companyName`, `domain`, `linkedinUrl`, `industry`, `employeeCount`, `country`, `founded`, `lastRoundType`, `matchedOn` | $1.50 per lookalike; seed and duplicates free |
 
 ## Search
 
